@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CONGRL — Portos</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container top-inner">
+    <div class="brand">
+      <div class="logo">⚓</div>
+      <div>
+        <h1 class="title">Portos — CONGRL</h1>
+        <div id="nowPort" class="now">—</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="backBtnPort" class="btn secondary" onclick="location.href='index.html'">Voltar</button>
+      <button id="refreshPort" class="btn">Atualizar</button>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+  <section class="card feed">
+    <div class="card-head">
+      <h2>Notícias Portuárias — Brasil</h2>
+      <div class="meta">Última coleta: <span id="lastFetchedPort">-</span> • <span id="countPort">-</span></div>
+    </div>
+
+    <div id="listPort" class="list">Carregando...</div>
+  </section>
+</main>
+
+<footer class="footer">
+  CONGRL — Centro Operacional de Notícias de Gerenciamento de Risco e Logística. Dados públicos e fontes oficiais.
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

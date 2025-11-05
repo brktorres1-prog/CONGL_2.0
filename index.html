@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CONGRL - Centro Operacional de Notícias GRL</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+</head>
+<body>
+<header class="topbar">
+  <div class="container top-inner">
+    <div class="brand">
+      <div class="logo">🚚</div>
+      <div>
+        <h1 class="title">CONGRL - Centro Operacional de Notícias GRL</h1>
+        <div id="now" class="now">—</div>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Notícias</a>
+      <a href="internacionais.html" class="nav-link">Internacionais</a>
+      <a href="portuarias.html" class="nav-link" target="_blank">Portuárias</a>
+      <a href="fontes.html" class="nav-link" target="_blank">Fontes</a>
+    </nav>
+
+    <div class="controls">
+      <input id="q" type="text" placeholder="Buscar por palavra-chave (ex: roubo, BR-101)" />
+      <select id="typeSelect">
+        <option value="">Todos os tipos</option>
+        <option>Acidente</option><option>Roubo</option><option>Furto</option><option>Trânsito</option><option>Interdição</option>
+      </select>
+      <select id="regionSelect">
+        <option value="">Todas regiões</option>
+        <option>Sudeste</option><option>Sul</option><option>Centro-Oeste</option><option>Norte</option><option>Nordeste</option>
+      </select>
+      <select id="rodoviaSelect">
+        <option value="">Todas rodovias</option>
+        <option>BR-101</option><option>BR-116</option><option>BR-386</option><option>BR-153</option><option>BR-050</option><option>SP-348</option><option>Imigrantes</option><option>Rodoanel</option>
+      </select>
+      <button id="searchBtn" class="btn secondary">Buscar</button>
+      <button id="refreshBtn" class="btn">Atualizar</button>
+      <button id="downloadCSV" class="btn small">Baixar CSV</button>
+      <button id="openMapBtn" class="btn">Abrir mapa</button>
+    </div>
+  </div>
+
+  <div class="container stats-row" id="statsRow">
+    <div class="stat card-stat">
+      <div class="stat-title">Total de ocorrências</div>
+      <div class="stat-value" id="statTotal">0</div>
+    </div>
+    <div class="stat card-stat accident">
+      <div class="stat-title">Acidentes</div>
+      <div class="stat-value" id="statAcc">0</div>
+    </div>
+    <div class="stat card-stat interdiction">
+      <div class="stat-title">Interdições</div>
+      <div class="stat-value" id="statInt">0</div>
+    </div>
+    <div class="stat card-stat transit">
+      <div class="stat-title">Trânsito / Lentidão</div>
+      <div class="stat-value" id="statTrans">0</div>
+    </div>
+    <div class="stat card-stat theft">
+      <div class="stat-title">Roubo / Furto</div>
+      <div class="stat-value" id="statRob">0</div>
+    </div>
+  </div>
+
+  <div class="container quick-row">
+    <button id="modeRodovias" class="btnMode active">Notícias Rodoviárias</button>
+    <button id="modePortos" class="btnMode">Notícias Portuárias (nova aba)</button>
+    <button id="modeIntl" class="btnMode">Notícias Internacionais (PT)</button>
+  </div>
+
+  <div class="container status-row" id="statusRow" aria-live="polite" style="display:none">
+    <div id="statusText">Carregando...</div>
+  </div>
+
+</header>
+
+<main class="container main">
+  <section class="card feed" id="feedSection">
+    <div class="card-head">
+      <h2 id="feedTitle">Últimas notícias — Rodovias</h2>
+      <div class="meta">Última coleta: <span id="lastFetched">-</span> • <span id="count">-</span></div>
+    </div>
+
+    <div id="list" class="list">Carregando...</div>
+  </section>
+
+  <aside class="sidebar">
+    <div class="card sources">
+      <h3>Ver Concessionárias</h3>
+      <div id="concess">Carregando...</div>
+    </div>
+
+    <div class="card map-section">
+      <h3>Mapa — Rodovias em destaque</h3>
+      <div id="map" style="height:360px;border-radius:8px;"></div>
+      <div class="map-actions">
+        <button id="zoomAll" class="btn small">Centralizar todas</button>
+        <button id="zoomRoute" class="btn small">Centralizar Santos→Anápolis</button>
+        <a id="openGoogle" class="btn small" target="_blank" rel="noopener">Abrir no Google Maps (tráfego)</a>
+      </div>
+      <p class="small">Mapa com rotas/rodovias destacadas e marcadores das concessionárias. Para tráfego em tempo real, abra no Google Maps.</p>
+    </div>
+  </aside>
+</main>
+
+<footer class="footer">
+  CONGRL — Centro Operacional de Notícias de Gerenciamento de Risco e Logística. Dados públicos e fontes oficiais.
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="script.js"></script>
+</body>
+</html>
